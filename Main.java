@@ -18,7 +18,7 @@ public class Main{
 		ArrayList<ArrayList<String>> Data = new ArrayList<ArrayList<String>>();
 		ArrayList<String> cities = new ArrayList<String>();
 		
-		Data = data.read_file("guategrafo");
+		Data = data.read_file("grafo");
 
 		// Extracting only the name of the cities.
 		for(int i = 0; i < Data.size(); i++) {
@@ -44,5 +44,61 @@ public class Main{
 		}
 		// Start the program
 		start(cities, view, city);
+	}
+
+	private static void start(ArrayList<String> cities, Interaction view, String[] city)throws IOException, InterruptedException {
+		int selection = 0;
+		while(selection != 2) {
+			selection = view.selectionMainMenu();
+			switch(selection) {
+			case 1:
+				// Ingresar lugar de salida.
+				userEntry(cities, view, city);
+				break;
+			default:
+				view.end_sys();
+				break;
+			}
+		}
+	}
+
+	private static void userEntry(ArrayList<String> cities, Interaction view, String[] city) throws IOException, InterruptedException{
+		int startPlace = view.startCity(cities);
+		int destiny = view.destiny(cities);
+		final int INF = Integer.MAX_VALUE;   // Valor maximo (infinito)
+		
+		int[][] matrix = new int[5][5];
+		// SaoPaulo
+		matrix[0][0] = 0;
+		matrix[0][1] = 30;
+		matrix[0][2] = INF;
+		matrix[0][3] = INF;
+		matrix[0][4] = 15;
+		// Lima
+		matrix[1][0] = 30;
+		matrix[1][1] = 0;
+		matrix[1][2] = 25;
+		matrix[1][3] = INF;
+		matrix[1][4] = 40;
+		// Quito
+		matrix[2][0] = INF;
+		matrix[2][1] = 25;
+		matrix[2][2] = 0;
+		matrix[2][3] = 15;
+		matrix[2][4] = 70;
+		// BuenosAires
+		matrix[3][0] = INF;
+		matrix[3][1] = INF;
+		matrix[3][2] = 15;
+		matrix[3][3] = 0;
+		matrix[3][4] = 90;
+		// SantiagodeChile
+		matrix[4][0] = 15;
+		matrix[4][1] = 40;
+		matrix[4][2] = 70;
+		matrix[4][3] = 90;
+		matrix[4][4] = 0;
+
+		
 	}
 }

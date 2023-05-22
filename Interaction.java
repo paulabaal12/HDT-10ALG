@@ -94,7 +94,7 @@ public class Interaction {
 	
 
 	private int transformData(String selection) {
-		String[] cities = {"SaoPaulo","Lima", "Quito", "BuenosAires"};
+		String[] cities = {"SaoPaulo","Lima", "Quito", "BuenosAires", "SantiagodeChile"};
 		int value = 0;
 		for(int i = 0; i < cities.length; i++) {
 			if(cities[i].equals(selection)) {
